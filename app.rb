@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'digest/sha1'
+require 'zlib'
 
 get '/say/:words' do
   content_type 'audio/wav'
