@@ -3,8 +3,20 @@ require 'digest/sha1'
 
 get '/say/:words' do
   content_type 'audio/wav'
-  words = params[:words]
-  `echo #{words} | espeak --stdout`
+
+  words   = params[:words]
+  raw_wav = `echo #{words} | espeak --stdout`
+
+  headers['Content-Encoding'] = 'gzip'
+
+  StringIO.new.tap do |io|
+    gz = Zlib::GzipWriter.new(io)
+    begin
+      gz.write(raw_wav)
+    ensure
+      gz.close
+    end
+  end.string
 end
 
 get '/' do
