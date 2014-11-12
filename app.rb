@@ -4,7 +4,7 @@ require 'zlib'
 get '/say/:words' do
   content_type 'audio/wav'
 
-  words   = params[:words]
+  words   = params[:words].gsub(/[^\w]/, ' ')
   raw_wav = `echo #{words} | espeak --stdout`
 
   headers['Content-Encoding'] = 'gzip'
