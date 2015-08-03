@@ -5,7 +5,7 @@ get '/say/:words' do
   content_type 'audio/wav'
 
   words   = params[:words].gsub(/[^\w]/, ' ')
-  raw_wav = `echo #{words} | espeak --stdout`
+  raw_wav = `echo #{words} | espeak -v whisper --stdout`
 
   headers['Content-Encoding'] = 'gzip'
 
