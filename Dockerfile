@@ -13,6 +13,7 @@ RUN              bundle
 
 ADD .            /webapp
 
-ENV PORT="4567"
+
+ENV PORT=4567
 
 CMD rackup -p $PORT -o 0.0.0.0

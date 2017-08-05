@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'zlib'
 
 set :bind, '0.0.0.0'
 
@@ -9,16 +8,7 @@ get '/say/:words' do
   words   = params[:words].gsub(/[^\w]/, ' ')
   raw_wav = `echo #{words} | espeak -v whisper --stdout`
 
-  headers['Content-Encoding'] = 'gzip'
-
-  StringIO.new.tap do |io|
-    gz = Zlib::GzipWriter.new(io)
-    begin
-      gz.write(raw_wav)
-    ensure
-      gz.close
-    end
-  end.string
+  `echo #{words} | espeak --stdout`
 end
 
 get '/' do
