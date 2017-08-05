@@ -13,7 +13,4 @@ RUN              bundle
 
 ADD .            /webapp
 
-
-EXPOSE 80
-
-CMD rackup -p 80 -o '0.0.0.0'
+CMD rackup -p 4567 -o '0.0.0.0'
