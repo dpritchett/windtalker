@@ -14,6 +14,6 @@ RUN              bundle
 ADD .            /webapp
 
 
-ENV PORT=4567
+EXPOSE 80
 
-CMD rackup -p $PORT -o 0.0.0.0
+CMD rackup -p 80 -o '0.0.0.0'
