@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'zlib'
 
+set :bind, '0.0.0.0'
+
 get '/say/:words' do
   content_type 'audio/wav'
 
